@@ -1,14 +1,18 @@
-// import { useState } from 'react'
 import './App.css'
+import Header from './Components/Header'
+import Homepage from './Components/Homepage'
+import NavBar from './Components/NavBar'
+import { Route, Routes} from 'react-router-dom'
 
 function App() {
-  // const [count, setCount] = useState(0)
-
+  
   return (
     <>
-     <h1>
-      NC News
-    </h1>
+     <NavBar/>
+     <Header/>
+     <Routes>
+      <Route path="/" element={<Homepage/>}></Route>
+     </Routes>
     </>
   )
 }
