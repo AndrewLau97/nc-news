@@ -5,9 +5,11 @@ import { getArticles } from "../api";
 function Homepage() {
   const [page, setPage] = useState(1);
   const [pageLimit, setPageLimit] = useState();
-  const [articles, setArticles] = useState([])
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading]=useState(true)
   const handlePagesClick = (e) => {
     const pageInstructions = e.target.textContent;
+    setLoading(true)
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     if (pageInstructions === "Prev") {
       setPage(page - 1);
@@ -21,14 +23,20 @@ function Homepage() {
     getArticles(page).then((articlesData) => {
       setArticles(articlesData.articles);
       setPageLimit(Math.ceil(articlesData.total_count / 10));
+      setLoading(false)
     });
   }, [page]);
   return (
-    <>
+    <>{loading?<p>loading</p>:
+      <>
+     
       <div className="Articles" id="articles">
         {articles.map((articleData) => {
           return (
-            <ArticleCard key={articleData.article_id} articleData={articleData} />
+            <ArticleCard
+              key={articleData.article_id}
+              articleData={articleData}
+            />
           );
         })}
       </div>
@@ -68,7 +76,9 @@ function Homepage() {
             Next
           </button>
         )}
-      </nav>
+      </nav> </>
+    
+  }
     </>
   );
 }

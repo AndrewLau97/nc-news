@@ -1,6 +1,6 @@
 body{
-  background-color: #333;
-  color:white
+  background-color: #222222;
+  color:rgb(156, 160, 133)
 }
 
 ul {
@@ -56,20 +56,30 @@ li a:hover {
 .ArticleCard {
   width:450px;
   margin:10px;
-  background-color: #7dba84;
+  /* background-color: #7dba84; */
+  background-color: #333;
   border-radius: 10px;
-  color: #253d5b;
+  /* color: #253d5b; */
+}
+
+.ArticleCard:hover{
+  opacity: 0.9;
+}
+
+.CardButtons{
+  /* border:1px solid red */
+  margin:5px 0 5px 0
 }
 
 .TopicTitle{
   text-align:center;
-  color:rgb(110, 10, 10)
+  /* color:rgb(110, 10, 10) */
 }
 
 .Articles{
   display: flex;
   flex-wrap: wrap;
-  border:1px solid black;
+  /* border:1px solid black; */
   /* justify-content:safe; */
 }
 
@@ -107,4 +117,23 @@ img {
 .pagination-number:hover,
 .pagination-button:not(.disabled):hover {
   background: #fff;
+}
+
+.ArticleInfoContainer{
+  /* border:1px solid yellow; */
+  padding:10px;
+  background-color: #333;
+  border-radius: 10px;
+}
+
+/* .CommentsInfoContainer{
+  border:1px solid yellow;
+} */
+
+.Comment{
+  /* border:1px solid orange; */
+  padding:10px;
+  background-color: #333;
+  margin-top: 20px;
+  border-radius: 10px;
 }
