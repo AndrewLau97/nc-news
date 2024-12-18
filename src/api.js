@@ -38,4 +38,8 @@ function postComment(article_id, body, username){
   })
 }
 
-export { getArticles, getSingleArticle ,getComments, updateArticleVotes, getUsers, postComment};
+function deleteComment(comment_id){
+  return api.delete(`/comments/${comment_id}`)
+}
+
+export { getArticles, getSingleArticle ,getComments, updateArticleVotes, getUsers, postComment, deleteComment};

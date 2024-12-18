@@ -29,7 +29,7 @@ function DetailedArticleCard({ articleData, articleInfo, setArticleInfo }) {
     } else {
       console.log("updating");
       updateArticleVotes(article_id, voteValue).catch((err) => {
-        alert("Please try again later");
+        alert("Unable to vote, please try again later");
         setArticleVotesAdded((currArticleVotesAdded) => {
           return currArticleVotesAdded - voteValue;
         });
