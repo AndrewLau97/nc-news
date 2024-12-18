@@ -71,6 +71,24 @@ li a:hover {
   margin:5px 0 5px 0
 }
 
+.UpVoteButton{
+  margin:10px
+}
+
+.DownVoteButton{
+  margin-left:10px
+}
+
+.ArticleImage{
+  margin:0 8px 0 8px;
+  border-radius: 10px;
+}
+
+.VotesText{
+  float:right;
+  margin-right:20px
+}
+
 .TopicTitle{
   text-align:center;
   /* color:rgb(110, 10, 10) */
