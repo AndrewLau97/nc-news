@@ -26,4 +26,16 @@ function updateArticleVotes(article_id, updateValue){
     return api.patch(`/articles/${article_id}`,{inc_votes:updateValue})
 }
 
-export { getArticles, getSingleArticle ,getComments, updateArticleVotes};
+function getUsers(){
+  return api.get('/users').then(({data})=>{
+    return data.users
+  })
+}
+
+function postComment(article_id, body, username){
+  return api.post(`/articles/${article_id}/comments`,{username,body}).then(({data})=>{
+    return data
+  })
+}
+
+export { getArticles, getSingleArticle ,getComments, updateArticleVotes, getUsers, postComment};
