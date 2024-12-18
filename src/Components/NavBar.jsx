@@ -11,7 +11,7 @@ function NavBar(){
         navigate("/login")
     }
     const handleProfileClick=()=>{
-        console.log("to go to profile page - to be added")
+        navigate("/profile")
     }
     // console.log(user)
     return <nav className="NavBar">
