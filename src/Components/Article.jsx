@@ -9,6 +9,7 @@ function Article() {
   const [articleInfo, setArticleInfo] = useState({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true)
     getSingleArticle(article_id)
       .then(({ article }) => {
         return article;
@@ -20,7 +21,6 @@ function Article() {
         });
       });
   }, []);
-
   return (
     <>
       {loading ? (
@@ -28,7 +28,7 @@ function Article() {
       ) : (
         <>
           <div className="ArticleInfoContainer">
-            <DetailedArticleCard articleData={articleInfo.article}/>
+            <DetailedArticleCard articleData={articleInfo.article} articleInfo={articleInfo} setArticleInfo={setArticleInfo}/>
           </div>
           <div className="CommentsInfoContainer">
             {articleInfo.comments.map((commentInfo)=>{
