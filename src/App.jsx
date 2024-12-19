@@ -19,6 +19,8 @@ function App() {
       <Route path="/article/:article_id" element={<Article/>}></Route>
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
+      {/* <Route path="/sort_by/:sort_by/order/:order" element={<Homepage/>}></Route>
+      <Route path="/topic/:topic/sort_by/:sort_by/order/:order" element={<Homepage/>}></Route> */}
      </Routes>
     </>
   )
