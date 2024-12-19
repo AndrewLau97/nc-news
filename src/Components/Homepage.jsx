@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "../api";
+import { useParams } from "react-router-dom";
 
 function Homepage() {
   const [page, setPage] = useState(1);
   const [pageLimit, setPageLimit] = useState();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading]=useState(true)
+  const {topic}=useParams()
   const handlePagesClick = (e) => {
     const pageInstructions = e.target.textContent;
     setLoading(true)
@@ -19,13 +21,14 @@ function Homepage() {
       setPage(Number(pageInstructions));
     }
   };
+  console.log(topic)
   useEffect(() => {
-    getArticles(page).then((articlesData) => {
+    getArticles(page, topic).then((articlesData) => {
       setArticles(articlesData.articles);
       setPageLimit(Math.ceil(articlesData.total_count / 10));
       setLoading(false)
     });
-  }, [page]);
+  }, [page, topic]);
   return (
     <>{loading?<p>loading</p>:
       <>
