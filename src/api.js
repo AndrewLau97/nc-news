@@ -4,8 +4,8 @@ const api = axios.create({
   baseURL: "https://my-nc-news-js63.onrender.com/api",
 });
 
-function getArticles(page, topic) {
-  return api.get("/articles", { params: { p: page, topic } }).then(({ data }) => {
+function getArticles(page, topic, sort_by, order) {
+  return api.get("/articles", { params: { p: page, topic, sort_by, order } }).then(({ data }) => {
     return data;
   });
 }

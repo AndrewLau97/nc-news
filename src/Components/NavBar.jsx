@@ -36,11 +36,10 @@ function NavBar() {
             </button>
             <div className="dropdown-content">
                 {topics.map((topic)=>{
-                    return <Link to={`/topic/${topic.slug}`}>{topic.slug}</Link>
+                    return <Link to={`/topic/${topic.slug}`} key={topic.slug}>{topic.slug}</Link>
                 })}
             </div>
             </div>
-          {/* <a>Categories</a> */}
         </li>
       </ul>
       {Object.keys(user).length === 0 ? (
