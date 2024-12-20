@@ -21,13 +21,13 @@ function DetailedArticleCard({ articleData, articleInfo, setArticleInfo }) {
   const [commentSection, setCommentSection] = useState(false);
   const [commentInput, setCommentInput] = useState("");
   const [submitError, setSubmitError] = useState(false);
+  const [isPosting,setIsPosting]=useState(false)
   const { user } = useContext(UserContext);
   const handleVotesClick = (e) => {
     const voteValue = Number(e.target.value);
     if (Object.keys(user).length === 0) {
       alert("Please log in to vote");
     } else {
-      console.log("updating");
       updateArticleVotes(article_id, voteValue).catch((err) => {
         alert("Unable to vote, please try again later");
         setArticleVotesAdded((currArticleVotesAdded) => {
@@ -50,17 +50,18 @@ function DetailedArticleCard({ articleData, articleInfo, setArticleInfo }) {
     e.preventDefault();
     if (commentInput === "") {
       setSubmitError(true);
-    } else {
-      postComment(article_id,commentInput,user.username).then(({comment})=>{
+    } else { 
+      setIsPosting(true)
+      postComment(article_id,commentInput,user.username).then(({data:{comment}})=>{
         setArticleInfo({article:articleInfo.article, comments:[comment,...articleInfo.comments]})
-        console.log("submitted")
-      }).catch((err)=>{alert("Unable to upload comment, please try again later")})
+
+        setIsPosting(false)
+      }).catch(()=>{alert("Unable to upload comment, please try again later")})
       setCommentSection(false);
       setCommentInput("");
       setSubmitError(false);
     }
   };
-
   const handleCommentChange = (e) => {
     setCommentInput(e.target.value);
   };
@@ -74,6 +75,9 @@ function DetailedArticleCard({ articleData, articleInfo, setArticleInfo }) {
       <img src={article_img_url} />
       <p>Votes: {votes + articleVotesAdded} </p>
       <div className="CardButtons">
+        <button onClick={handleVotesClick} className="UpVoteButton" value="1">
+          Like
+        </button>
         {votes + articleVotesAdded > 0 && (
           <button
             onClick={handleVotesClick}
@@ -83,9 +87,6 @@ function DetailedArticleCard({ articleData, articleInfo, setArticleInfo }) {
             Dislike
           </button>
         )}
-        <button onClick={handleVotesClick} className="UpVoteButton" value="1">
-          Like
-        </button>
         <button onClick={handleCommentClick}>Add comment</button>
       </div>
       {commentSection && (

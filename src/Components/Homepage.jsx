@@ -9,6 +9,7 @@ function Homepage() {
   const [pageLimit, setPageLimit] = useState();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isError,setIsError]=useState(false)
   
   const { topic } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,6 +25,7 @@ function Homepage() {
     }
   };
   useEffect(() => {
+    setIsError(false)
     setLoading(true);
     const sort_by = searchParams.get("sort_by");
     const order = searchParams.get("order");
@@ -31,10 +33,13 @@ function Homepage() {
       setArticles(articlesData.articles);
       setPageLimit(Math.ceil(articlesData.total_count / 10));
       setLoading(false);
+    }).catch(()=>{
+      setIsError(true)
+      alert("Unable to load articles, please try again later")
     });
   }, [page, topic, searchParams]);
   return (
-    <>
+    <>{isError?<p>Error</p>:<div>
       <FilterBar/>
       {loading ? (
         <p>loading</p>
@@ -89,6 +94,7 @@ function Homepage() {
           </nav>{" "}
         </>
       )}
+      </div>}
     </>
   );
 }

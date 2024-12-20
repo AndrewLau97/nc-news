@@ -33,8 +33,8 @@ function getUsers(){
 }
 
 function postComment(article_id, body, username){
-  return api.post(`/articles/${article_id}/comments`,{username,body}).then(({data})=>{
-    return data
+  return api.post(`/articles/${article_id}/comments`,{username,body}).then((response)=>{
+    return response
   })
 }
 

@@ -4,7 +4,7 @@ import { getUsers } from "../api"
 import { useNavigate } from "react-router-dom";
 
 function Login(){
-const {user,setUser}=useContext(UserContext)
+const {setUser}=useContext(UserContext)
 const navigate = useNavigate();
 const [input,setInput]=useState("")
 const [allUsers,setAllUsers]=useState([])
@@ -18,6 +18,8 @@ const handleClick=(e)=>{
         }else{
             alert("Incorrect username/password")
         }
+    }).catch(()=>{
+        alert("unable to login at this time, please try again later")
     })
 }
 const handleChange=(e)=>{

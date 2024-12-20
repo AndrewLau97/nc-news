@@ -95,7 +95,16 @@ li a:hover {
   text-align: center;
 }
 
+.Articles{
+  display:flex;
+  flex-wrap: wrap;
+  /* border:1px solid black; */
+  justify-content:center;
+}
+
 .ArticleCard {
+  /* display: flex;
+  justify-content: flex-start; */
   width:450px;
   margin:10px;
   /* background-color: #7dba84; */
@@ -114,11 +123,11 @@ li a:hover {
 }
 
 .UpVoteButton{
-  margin:10px
+  margin-left:10px
 }
 
 .DownVoteButton{
-  margin-left:10px
+  margin:10px
 }
 
 .ArticleImage{
@@ -137,12 +146,7 @@ li a:hover {
   /* color:rgb(110, 10, 10) */
 }
 
-.Articles{
-  display: flex;
-  flex-wrap: wrap;
-  /* border:1px solid black; */
-  /* justify-content:safe; */
-}
+
 
 img {
   max-width: 100%;
