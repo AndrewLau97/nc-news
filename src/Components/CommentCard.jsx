@@ -12,10 +12,16 @@ function CommentCard({ commentInfo }) {
   const handleDeleteComment=()=>{
     setDisableButton(true)
     deleteComment(comment_id).then(()=>{
+      console.log("success")
       setIsDeleted(true)
-    }).catch(()=>{
-      alert("Unable to delete comment, please try again later")
-      setDisableButton(false)
+    }).catch((err)=>{
+      if(err.message==="Network Error"){
+        alert("Unable to delete comment, please try again later")
+        setDisableButton(false)
+      }
+      else{
+        setIsDeleted(true)
+      }
     })
   }
   return (<>

@@ -15,7 +15,6 @@ function NavBar() {
   const handleProfileClick = () => {
     navigate("/profile");
   };
-  // console.log(user)
 
   useEffect(()=>{
     getTopics().then((topics)=>{

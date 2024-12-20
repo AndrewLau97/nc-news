@@ -8,7 +8,9 @@ function Article() {
   const { article_id } = useParams();
   const [articleInfo, setArticleInfo] = useState({});
   const [loading, setLoading] = useState(true);
+  const [errorLoading,setErrorLoading]=useState(false)
   useEffect(() => {
+    setErrorLoading(false)
     setLoading(true)
     getSingleArticle(article_id)
       .then(({ article }) => {
@@ -19,11 +21,18 @@ function Article() {
           setArticleInfo({ article, comments });
           setLoading(false);
         });
+      }).catch((err)=>{
+        setErrorLoading(true)
+        if(err.message==="Network Error"){
+          alert("unable to connect, please try again later")
+        }else if(err.status===404||err.status===400){
+          alert("Unable to find article, article does not exist")
+        }
       });
   }, []);
   return (
     <>
-      {loading ? (
+      {errorLoading?<p>Error</p>:loading ? (
         <p>Loading</p>
       ) : (
         <>
